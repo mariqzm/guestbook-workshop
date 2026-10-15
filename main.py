@@ -3,14 +3,14 @@ from contextlib import asynccontextmanager
 import psycopg
 from fastapi import FastAPI
 from pydantic import BaseModel
+from config import settings
 
-# ⚠️ Пока всё зашито прямо в код — это и предстоит исправить.
-DATABASE_URL = "postgresql://guestbook:supersecret123@localhost:5432/guestbook"
+
 GREETING = "Добро пожаловать в гостевую книгу!"
 
 
 def connect():
-    return psycopg.connect(DATABASE_URL)
+    return psycopg.connect(settings.database_url)
 
 
 @asynccontextmanager
